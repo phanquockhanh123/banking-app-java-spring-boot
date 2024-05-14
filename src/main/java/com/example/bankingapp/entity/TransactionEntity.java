@@ -1,10 +1,10 @@
 package com.example.bankingapp.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,22 +16,14 @@ import java.util.Date;
 @Setter
 @Builder
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "transactions")
+public class TransactionEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String otherName;
-    private String gender;
-    private String address;
-    private String stateOfOrigin;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String transactionId;
+    private String transactionType;
+    private BigDecimal amount;
     private String accountNumber;
-    private BigDecimal accountBalance;
-    private String email;
-    private String phoneNumber;
-    private String alternativePhoneNumber;
     private String status;
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
